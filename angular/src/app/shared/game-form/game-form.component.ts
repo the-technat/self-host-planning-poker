@@ -25,7 +25,7 @@ export class GameFormComponent implements OnInit{
   constructor(private fb: FormBuilder) {
     this.formGroup = this.fb.group({
       name: [ '', [ Validators.required, Validators.minLength(1) ]],
-      deck: [ decksDict['FIBONACCI'], Validators.required ]
+      deck: [ decksDict['DEFAULT'], Validators.required ]
     });
   }
 

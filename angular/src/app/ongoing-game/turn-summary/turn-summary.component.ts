@@ -24,7 +24,7 @@ export class TurnSummaryComponent implements AfterViewInit, OnDestroy {
   valueDescOrder = (a: KeyValue<string, number>, b: KeyValue<string, number>): number =>
     a.value > b.value ? -1 : (b.value > a.value ? 1 : 0)
 
-  deck: Deck = decksDict['FIBONACCI'];
+  deck: Deck = decksDict['DEFAULT'];
   average = 0;
   agreement = 0;
   $counts: Observable<CardCount>;
