@@ -47,7 +47,7 @@ export class TranslocoHttpLoader implements TranslocoLoader {
               private pls: PathLocationStrategy) {}
 
   getTranslation(lang: string) {
-    return this.http.get<Translation>(`${this.pls.getBaseHref()}assets/i18n/${lang}.json`);
+    return this.http.get<Translation>(`${this.pls.getBaseHref()}static/assets/i18n/${lang}.json`);
   }
 }
 

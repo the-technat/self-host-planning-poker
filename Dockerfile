@@ -1,5 +1,4 @@
 FROM --platform=$BUILDPLATFORM docker.io/library/node:lts-slim AS node_builder
-
 WORKDIR /angular
 COPY angular/ /angular
 RUN npm config set update-notifier false && \
@@ -8,15 +7,19 @@ RUN npm config set update-notifier false && \
   npm ci
 RUN npm run build self-host-planning-poker
 
-FROM docker.io/library/python:3.11.7-alpine3.18
-RUN adduser -H -D -u 1001 -G root default
+FROM golang:1.22 AS go_builder
+COPY backend/ /
+WORKDIR /
+RUN go mod download
+RUN CGO_ENABLED=1 GOOS=linux go build -a -installsuffix cgo -o app ./cmd/server/main.go
+
+FROM golang:1.22
 WORKDIR /app
-COPY --chown=1001:0 flask/ ./
+RUN touch /app/database.db
+RUN chown -R 1001:0 /app
+RUN chmod 750 /app/database.db
+COPY backend/templates/ ./templates
+COPY --chown=1001:0 --from=go_builder /app ./
 COPY --chown=1001:0 --from=node_builder /angular/dist/self-host-planning-poker ./static
-RUN pip install --upgrade pip && \
-  pip install --requirement requirements.txt && \
-  mkdir /data && \
-  chown -R 1001:0 /app /data && \
-  chmod -R g+w /app /data
 USER 1001
-CMD [ "gunicorn", "--worker-class", "eventlet", "-w", "1", "app:app", "--bind", "0.0.0.0:8000" ]
+CMD [ "./app" ]

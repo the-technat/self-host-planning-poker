@@ -44,9 +44,18 @@ export class CurrentGameService {
       ackTimeout: this.ackTimeoutMs
     });
 
-    this.socket.on('state', (state: GameState) => this.stateSubject.next(state));
-    this.socket.on('info', (info: GameInfo) => this.infoSubject.next(info));
-    this.socket.on('new_game', () => this.newGameSubject.next());
+    this.socket.on('state', (state: GameState) => {
+      console.log('Call game state', state);
+      this.stateSubject.next(state);
+    });
+    this.socket.on('info', (info: GameInfo) => {
+      console.log('Call game info', info);
+      this.infoSubject.next(info);
+    });
+    this.socket.on('new_game', () => {
+      console.log('Call new game');
+      this.newGameSubject.next()
+    });
 
     this.socket.on('disconnect', (reason) => {
       if (reason !== 'io client disconnect') {
@@ -55,24 +64,31 @@ export class CurrentGameService {
       console.info(`Socket disconnected. Reason is "${reason}"`);
     });
     this.manager.on('reconnect_attempt', (attempt: number) => {
+      console.log('reconnect.attempt', { attempt: attempt, total: this.totalAttempts });
       this.info('reconnect.attempt', { attempt: attempt, total: this.totalAttempts });
     });
     this.manager.on('reconnect_error', (err: Error) => {
+      console.log('reconnect.error', { error: err.message });
       this.error('reconnect.error', { error: err.message });
     });
     this.manager.on('reconnect_failed', () => {
+      console.log('reconnect.failed', { attempts: this.totalAttempts });
       this.error('reconnect.failed', { attempts: this.totalAttempts });
     });
     this.manager.on('reconnect', (attempt: number) => {
+      console.log('reconnect.success', { attempts: attempt });
       this.success('reconnect.success', { attempts: attempt });
     });
 
     this.userInformation.nameObservable().subscribe((name: string) => {
+      console.log('called set player name');
+      console.log(this.socket.connected);
       if (this.socket.connected) {
         this.socket.emit('set_player_name', {name: name});
       }
     });
     this.userInformation.spectatorObservable().subscribe((spectator: boolean) => {
+      console.log('Call set spectator', spectator);
       if (this.socket.connected) {
         this.socket.emit('set_spectator', {spectator: spectator})
       }

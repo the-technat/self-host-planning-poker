@@ -22,6 +22,7 @@
               "path": "webpack.config.js"
             },
             "outputPath": "dist/self-host-planning-poker",
+            "deployUrl": "/static/",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -130,7 +131,8 @@
   "cli": {
     "schematicCollections": [
       "@angular-eslint/schematics"
-    ]
+    ],
+    "analytics": false
   },
   "schematics": {
     "@angular-eslint/schematics:application": {
