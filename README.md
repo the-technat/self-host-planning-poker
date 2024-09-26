@@ -1,16 +1,13 @@
 # Self-host Planning Poker
 
-A hassle-free Planning Poker application to deploy on your NAS.
+A hassle-free Planning Poker application to deploy everywhere.
 
-[![Docker Hub](https://img.shields.io/docker/v/axeleroy/self-host-planning-poker?sort=semver&logo=docker)](https://hub.docker.com/r/axeleroy/self-host-planning-poker/tags)
-[![Docker Hub](https://img.shields.io/docker/pulls/axeleroy/self-host-planning-poker?logo=docker)](https://hub.docker.com/r/axeleroy/self-host-planning-poker/tags)
-[![GitHub release](https://img.shields.io/github/v/release/axeleroy/self-host-planning-poker?logo=github&logoColor=959DA5)](https://github.com/axeleroy/self-host-planning-poker/pkgs/container/self-host-planning-poker)
+This is sort of a fork from [axeleroy](https://github.com/axeleroy/self-host-planning-poker)'s planning poker, but slightly adjusted to my likings.
 
 [![GitHub last commit](https://img.shields.io/github/last-commit/axeleroy/self-host-planning-poker?logo=github&logoColor=959DA5)](https://github.com/axeleroy/self-host-planning-poker/commits/main)
 [![License](https://img.shields.io/github/license/axeleroy/self-host-planning-poker?logo=github&logoColor=959DA5)](https://github.com/axeleroy/self-host-planning-poker/blob/main/LICENSE)
 [![Tests](https://github.com/axeleroy/self-host-planning-poker/actions/workflows/tests.yml/badge.svg)](https://github.com/axeleroy/self-host-planning-poker/actions/workflows/tests.yml)
-[![Docker build](https://github.com/axeleroy/self-host-planning-poker/actions/workflows/publish.yml/badge.svg)](https://github.com/axeleroy/self-host-planning-poker/actions/workflows/publish.yml)
-[![Crowdin](https://badges.crowdin.net/self-host-planning-poker/localized.svg)](https://crowdin.com/project/self-host-planning-poker)
+[![Docker build](https://github.com/the-technat/self-host-planning-poker/actions/workflows/publish.yml/badge.svg)](https://github.com/the-technat/self-host-planning-poker/actions/workflows/publish.yml)
 
 ## What is it?
 
@@ -28,8 +25,8 @@ It features:
 It does not have fancy features like issues management, Jira integration or timers.
 
 ## Screenshots
-<a href="https://github.com/axeleroy/self-host-planning-poker/blob/main/assets/screenshot.png"><img alt="Application screenshot with cards face down" src="https://github.com/axeleroy/self-host-planning-poker/blob/main/assets/screenshot.png" width="412px"></a>
-<a href="https://github.com/axeleroy/self-host-planning-poker/blob/main/assets/screenshot.png"><img alt="Application screenshot with cards revealed" src="https://github.com/axeleroy/self-host-planning-poker/blob/main/assets/screenshot-revealed.png" width="412px"></a>
+<a href="https://github.com/the-technat/self-host-planning-poker/blob/main/assets/screenshot.png"><img alt="Application screenshot with cards face down" src="https://github.com/the-technat/self-host-planning-poker/blob/main/assets/screenshot.png" width="412px"></a>
+<a href="https://github.com/the-technat/self-host-planning-poker/blob/main/assets/screenshot.png"><img alt="Application screenshot with cards revealed" src="https://github.com/the-technat/self-host-planning-poker/blob/main/assets/screenshot-revealed.png" width="412px"></a>
 
 ## Deployment
 
@@ -41,7 +38,7 @@ All you need is to create a volume to persist the games settings (ID, name and d
 docker run \
   -v planning-poker-data:/data \
   -p 8000:8000 \
-  axeleroy/self-host-planning-poker:latest
+  ghcr.io/the-technat/self-host-planning-poker:latest
 ```
 
 ### docker-compose
@@ -49,7 +46,7 @@ docker run \
 version: "3"
 services:
   planning-poker:
-    image: axeleroy/self-host-planning-poker:latest
+    image: ghcr.io/the-technat/self-host-planning-poker:latest
     ports:
       - 8000:8000
     volumes:
@@ -57,6 +54,10 @@ services:
 volumes:
   planning-poker-data: {}
 ```
+
+### Helm chart
+
+There is a helm chart available at [charts/self-host-planning-poker](./charts/self-host-planning-poker).
 
 ### Environment variables
 
