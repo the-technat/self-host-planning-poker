@@ -4,7 +4,7 @@ A hassle-free Planning Poker application to deploy everywhere.
 
 This is sort of a fork from [axeleroy](https://github.com/axeleroy/self-host-planning-poker)'s planning poker, but slightly adjusted to my likings.
 
-[![GitHub last commit](https://img.shields.io/github/last-commit/axeleroy/self-host-planning-poker?logo=github&logoColor=959DA5)](https://github.com/axeleroy/self-host-planning-poker/commits/main)
+[![GitHub last commit](https://img.shields.io/github/last-commit/the-technat/self-host-planning-poker?logo=github&logoColor=959DA5)](https://github.com/the-technat/self-host-planning-poker/commits/main)
 [![License](https://img.shields.io/github/license/axeleroy/self-host-planning-poker?logo=github&logoColor=959DA5)](https://github.com/axeleroy/self-host-planning-poker/blob/main/LICENSE)
 [![Tests](https://github.com/axeleroy/self-host-planning-poker/actions/workflows/tests.yml/badge.svg)](https://github.com/axeleroy/self-host-planning-poker/actions/workflows/tests.yml)
 [![Docker build](https://github.com/the-technat/self-host-planning-poker/actions/workflows/publish.yml/badge.svg)](https://github.com/the-technat/self-host-planning-poker/actions/workflows/publish.yml)
@@ -58,37 +58,6 @@ volumes:
 ### Helm chart
 
 There is a helm chart available at [charts/self-host-planning-poker](./charts/self-host-planning-poker).
-
-### Environment variables
-
-| Variable              | Meaning                                                                                                                                                                                                                                          | Example            |
-|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|
-| `APP_ROOT` (optional) | Allows you to deploy to another path than `/`.<br>See [Configuration examples for deploying on sub‐paths](https://github.com/axeleroy/self-host-planning-poker/wiki/Configuration-examples-for-deploying-on-sub%E2%80%90paths) for more details. | `APP_ROOT=/poker/` |
-
-### Running behind a reverse-proxy
-
-Refer to [Socket.IO's documentation](https://socket.io/docs/v4/reverse-proxy/)  for setting up your reverse-proxy to work correctly with Socket.IO.
-
-### Customization
-
-See [Customizing the application's style and icon](https://github.com/axeleroy/self-host-planning-poker/wiki/Customizing-the-application's-style-and-icon).
-
-## Getting involved
-
-### I'm a developer and I want to help
-
-You are welcome to open Pull Requests resolving issues in the [Project](https://github.com/users/axeleroy/projects/1/views/1) or 
-tagged [pr-welcome](https://github.com/axeleroy/self-host-planning-poker/issues?q=is%3Aissue+is%3Aopen+label%3Apr-welcome).
-Don't forget to mention the issue you want to close 😉
-
-### I'm a user and I need help / I encountered a bug / I have a feature request
-
-[Open an issue](https://github.com/axeleroy/self-host-planning-poker/issues/new) and I'll take a look at it.
-
-### I'm a user and want to contribute translations
-
-There is a [Crowdin project](https://crowdin.com/project/self-host-planning-poker) that lets you add translations for
-your language. If your language is not available, feel free to contact me over Crowdin.
 
 ## Development
 
@@ -150,7 +119,7 @@ npm start
 
 ```sh
 # After checking out the project
-docker build . -t axeleroy/self-host-planning-poker:custom
+docker build . -t the-technat/self-host-planning-poker:custom
 # Alternatively, if you don't want to checkout the project
-docker build https://github.com/axeleroy/self-host-planning-poker -t axeleroy/self-host-planning-poker:custom
+docker build https://github.com/the-technat/self-host-planning-poker -t the-technat/self-host-planning-poker:custom
 ```
