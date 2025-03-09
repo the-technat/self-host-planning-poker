@@ -63,3 +63,25 @@ jobs:
           cache-dependency-path: angular/package-lock.json
       - name: Run linting
         run: cd angular; npm i; npm run lint
+  image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Calculate image metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ github.repository }}
+      - name: Build image
+        uses: docker/build-push-action@v5
+        with:
+          push: false
+          platforms: linux/amd64,linux/arm64
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          # See https://docs.docker.com/build/ci/github-actions/examples/#github-cache
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

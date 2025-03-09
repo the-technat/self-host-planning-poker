@@ -127,4 +127,4 @@ docker build https://github.com/the-technat/self-host-planning-poker -t the-tech
 
 ## Release
 
-Releases are done by pushing a new tag to the repoistory. A Github Action will then build a new image and publish the chart. Releases are done if needed / occasionally, but not regularly. 
+Releases are done by pushing a new tag to the repoistory. A Github Action will then build a new image. A Chart is currently not published. Releases are done if needed / occasionally, but not regularly.  
