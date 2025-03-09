@@ -11,8 +11,7 @@ This is sort of a fork from [axeleroy](https://github.com/axeleroy/self-host-pla
 
 ## What is it?
 
-This application is intended as a simplified and self-hostable alternative to
-[Planning Poker Online](https://planningpokeronline.com/).
+Dead-simple planning poker that just works without having to rely on any external dependencies nor having to use one of the many planning poker's available in the internet.
 
 It features:
 
@@ -33,7 +32,7 @@ It does not have fancy features like issues management, Jira integration or time
 Deploying the application is easy as it's self-contained in a single container.
 All you need is to create a volume to persist the games settings (ID, name and deck).
 
-### Docker
+### docker
 ```bash
 docker run \
   -v planning-poker-data:/data \
@@ -55,7 +54,7 @@ volumes:
   planning-poker-data: {}
 ```
 
-### Helm chart
+### helm 
 
 There is a helm chart available at [charts/self-host-planning-poker](./charts/self-host-planning-poker).
 
@@ -72,6 +71,7 @@ You must first initialise a virtual environment and install the dependencies
 
 ```sh
 # Run the following commands in the flask/ folder
+cd flask/
 python3 -m venv env
 source env/bin/activate
 pip3 install -r requirements.txt
@@ -111,6 +111,7 @@ Then, install dependencies and launch the development server
 
 ```sh
 # Run the following commands in the angular/ folder
+cd angular/
 npm install
 npm start
 ```
@@ -123,3 +124,7 @@ docker build . -t the-technat/self-host-planning-poker:custom
 # Alternatively, if you don't want to checkout the project
 docker build https://github.com/the-technat/self-host-planning-poker -t the-technat/self-host-planning-poker:custom
 ```
+
+## Release
+
+Releases are done by pushing a new tag to the repoistory. A Github Action will then build a new image and publish the chart. Releases are done if needed / occasionally, but not regularly. 
