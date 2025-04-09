@@ -71,7 +71,8 @@ jobs:
           # repush the change to default branch
           git add charts/$REPO_NAME/Chart.yaml
           git commit -m "release: update Chart.yaml to version $CHART_VERSION"
-          git push
+          git checkout main
+          git push origin main
       - name: Run chart-releaser
         # publishes helm index: https://the-technat.github.io/self-host-planning-poker/index.yaml
         # publishes tgz as github release: https://github.com/the-technat/self-host-planning-poker/releases/download/self-host-planning-poker-0.0.2/self-host-planning-poker-${CHART_VERSION}.tgz
