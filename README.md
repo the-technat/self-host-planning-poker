@@ -57,13 +57,12 @@ volumes:
 
 ### helm 
 
-There is a helm chart available at [charts/self-host-planning-poker](./charts/self-host-planning-poker):
+There is a helm chart available at [charts/self-host-planning-poker](./charts/self-host-planning-poker) that's published as OCI artifact:
 
 ```console
-helm upgrade -i scrum-poker ./charts/self-host-planning-poker -f values.yaml
+helm repo add self-host-planning-poker https://the-technat.github.io/self-host-planning-poker
+helm upgrade -i scrum-poker --create-namespace -n scrum-poker self-host-planning-poker/self-host-planning-poker-chart
 ```
-
-Currently the helm chart isn't published anywhere, but support for this might be coming in the future ([tracked in this issue](https://github.com/the-technat/self-host-planning-poker/issues/9)).
 
 ## Development
 
@@ -134,4 +133,4 @@ docker build https://github.com/the-technat/self-host-planning-poker -t the-tech
 
 ## Release
 
-Releases are done by pushing a new tag to the repoistory. A Github Action will then build a new image. A Chart is currently not published. Releases are done if needed / occasionally, but not regularly.  
+Releases are done by pushing a new git tag to the repository. A Github Action will then build a new image and publish a new helm chart with the same version.
