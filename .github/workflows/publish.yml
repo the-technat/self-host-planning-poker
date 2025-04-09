@@ -69,7 +69,7 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
       - name: Run chart-releaser
-        uses: bitdeps/helm-oci-charts-releaser@v0.1.3
+        uses: bitdeps/helm-oci-charts-releaser@v0.1.4
         with:
             oci_registry: ${{ env.REGISTRY }}/${{ env.GITHUB_REPOSITORY_OWNER }}
             oci_username: ${{ env.GITHUB_REPOSITORY_OWNER }}
