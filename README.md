@@ -2,7 +2,8 @@
 
 A hassle-free Planning Poker application to deploy everywhere.
 
-This is sort of a fork from [axeleroy](https://github.com/axeleroy/self-host-planning-poker)'s planning poker, but slightly adjusted to my likings.
+> [!NOTE]
+> This is a fork from [axeleroy](https://github.com/axeleroy/self-host-planning-poker)'s planning poker, but slightly adjusted to my likings.
 
 [![GitHub last commit](https://img.shields.io/github/last-commit/the-technat/self-host-planning-poker?logo=github&logoColor=959DA5)](https://github.com/the-technat/self-host-planning-poker/commits/main)
 [![License](https://img.shields.io/github/license/axeleroy/self-host-planning-poker?logo=github&logoColor=959DA5)](https://github.com/axeleroy/self-host-planning-poker/blob/main/LICENSE)
@@ -56,7 +57,13 @@ volumes:
 
 ### helm 
 
-There is a helm chart available at [charts/self-host-planning-poker](./charts/self-host-planning-poker).
+There is a helm chart available at [charts/self-host-planning-poker](./charts/self-host-planning-poker):
+
+```console
+helm upgrade -i scrum-poker ./charts/self-host-planning-poker -f values.yaml
+```
+
+Currently the helm chart isn't published anywhere, but support for this might be coming in the future ([tracked in this issue](https://github.com/the-technat/self-host-planning-poker/issues/9)).
 
 ## Development
 
