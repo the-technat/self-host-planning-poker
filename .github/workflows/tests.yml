@@ -9,6 +9,9 @@ on:
       - 'main'
   pull_request:
 
+env:
+  REGISTRY: ghcr.io
+
 jobs:
   backend-tests:
     name: Back-end tests
