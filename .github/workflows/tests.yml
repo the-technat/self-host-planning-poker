@@ -2,6 +2,9 @@ name: Tests
 
 on:
   push:
+    paths-ignore:
+      - "README.md"
+      - "renovate.json"
     branches:
       - 'main'
   pull_request:

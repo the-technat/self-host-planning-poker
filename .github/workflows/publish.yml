@@ -50,6 +50,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
         with:
+          ref: 'main'
           fetch-depth: 0
       - name: Configure Git
         run: |
@@ -57,8 +58,6 @@ jobs:
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
       - name: Configure chart AppVersion and chartVersion from latest image in GitHub Package Registry
         run: |
-          # checkout to main branch
-          git checkout main
           REPO_NAME=$(echo "${{ github.repository }}" | cut -d/ -f2)
           set -x
           # https://github.com/orgs/community/discussions/26279
