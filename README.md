@@ -28,6 +28,10 @@ It does not have fancy features like issues management, Jira integration or time
 <a href="https://github.com/the-technat/self-host-planning-poker/blob/main/assets/screenshot.png"><img alt="Application screenshot with cards face down" src="https://github.com/the-technat/self-host-planning-poker/blob/main/assets/screenshot.png" width="412px"></a>
 <a href="https://github.com/the-technat/self-host-planning-poker/blob/main/assets/screenshot.png"><img alt="Application screenshot with cards revealed" src="https://github.com/the-technat/self-host-planning-poker/blob/main/assets/screenshot-revealed.png" width="412px"></a>
 
+## Motivation
+
+As you may see this repo is a fork, so most of the app hasn't been written myself (credits to [axeleroy](https://github.com/axeleroy)). But sometimes I like to overengineer stuff (like the CI and deployment stuff of this app), thus I ocasionally maintain this app.
+
 ## Deployment
 
 Deploying the application is easy as it's self-contained in a single container.
