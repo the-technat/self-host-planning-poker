@@ -49,12 +49,16 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Configure Git
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
       - name: Configure chart AppVersion and chartVersion from latest image in GitHub Package Registry
         run: |
+          # checkout to main branch
+          git checkout main
           REPO_NAME=$(echo "${{ github.repository }}" | cut -d/ -f2)
           set -x
           # https://github.com/orgs/community/discussions/26279
@@ -62,16 +66,13 @@ jobs:
           GHCR_TOKEN=$(echo ${{ secrets.GITHUB_TOKEN }} | base64)
           curl -H "Authorization: Bearer ${GHCR_TOKEN}" https://ghcr.io/v2/${{ github.repository_owner }}/$REPO_NAME/tags/list | tee versions.json
           # do semantic sort on existing tags, get latest
-          APP_VERSION=$(jq '.tags[]' versions.json -r | grep -v latest | sort -Vr | head -n1)
-          CHART_VERSION=$(jq '.tags[]' versions.json -r | grep -v latest | sort -Vr | head -n1)
+          VERSION=$(jq '.tags[]' versions.json -r | grep -v latest | sort -Vr | head -n1)
           # customize helm chart appVersion to match latest OCI image tag in GitHub Package Registry
-          sed -i "s/appVersion:.*/appVersion: \"$APP_VERSION\"/" charts/$REPO_NAME/Chart.yaml
-          # customize helm chart version to match latest OCI image tag in GitHub Package Registry
-          sed -i "s/version:.*/version: \"$CHART_VERSION\"/" charts/$REPO_NAME/Chart.yaml
+          sed -i "s/appVersion:.*/appVersion: \"$VERSION\"/" charts/$REPO_NAME/Chart.yaml
+          sed -i "s/version:.*/version: \"$VERSION\"/" charts/$REPO_NAME/Chart.yaml
           # repush the change to default branch
           git add charts/$REPO_NAME/Chart.yaml
           git commit -m "release: update Chart.yaml to version $CHART_VERSION"
-          git checkout main
           git push origin main
       - name: Run chart-releaser
         # publishes helm index: https://the-technat.github.io/self-host-planning-poker/index.yaml
