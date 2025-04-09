@@ -57,11 +57,10 @@ volumes:
 
 ### helm 
 
-There is a helm chart available at [charts/self-host-planning-poker](./charts/self-host-planning-poker) that you can use:
+There is a helm chart available at [charts/self-host-planning-poker](./charts/self-host-planning-poker) that's published as OCI artifact:
 
 ```console
-helm repo add self-host-planning-poker https://the-technat.github.io/self-host-planning-poker
-helm upgrade -i scrum-poker --create-namespace -n scrum-poker self-host-planning-poker/self-host-planning-poker
+helm upgrade -i scrum-poker --create-namespace -n scrum-poker oci://ghcr.io/the-technat/self-host-planning-poker-chart
 ```
 
 ## Development
