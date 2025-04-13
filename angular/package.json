@@ -36,7 +36,7 @@
     "socket.io-client": "^4.7.1",
     "source-map-explorer": "^2.5.3",
     "tslib": "^2.5.0",
-    "zone.js": "~0.14.2"
+    "zone.js": "~0.15.0"
   },
   "devDependencies": {
     "@angular-builders/custom-webpack": "^17.0.0",
