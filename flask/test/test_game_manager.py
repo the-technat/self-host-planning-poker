@@ -34,7 +34,7 @@ class GameManagerTestCase(unittest.TestCase):
         stored_game = StoredGame.get(StoredGame.uuid == game_id)
         self.assertEqual(stored_game.uuid, uuid.UUID(game_id))
         self.assertEqual(stored_game.name, name)
-        self.assertEqual(stored_game.deck, 'FIBONACCI')
+        self.assertEqual(stored_game.deck, 'DEFAULT')
 
     def test_create_other_deck(self):
         gm = GameManager()
