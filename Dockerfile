@@ -8,15 +8,11 @@ RUN npm config set update-notifier false && \
   npm ci
 RUN npm run build self-host-planning-poker
 
-FROM docker.io/library/python:3.11.7-alpine3.18
+FROM ghcr.io/astral-sh/uv:python3.13-bookworm
 RUN adduser -H -D -u 1001 -G root default
 WORKDIR /app
-COPY --chown=1001:0 flask/ ./
-COPY --chown=1001:0 --from=node_builder /angular/dist/self-host-planning-poker ./static
-RUN pip install --upgrade pip && \
-  pip install --requirement requirements.txt && \
-  mkdir /data && \
-  chown -R 1001:0 /app /data && \
-  chmod -R g+w /app /data
-USER 1001
-CMD [ "gunicorn", "--worker-class", "eventlet", "-w", "1", "app:app", "--bind", "0.0.0.0:8000" ]
+COPY flask/ ./
+COPY --from=node_builder /angular/dist/self-host-planning-poker ./static
+RUN uv sync --locked && \
+  mkdir /data  
+CMD [ "uv", "run", "gunicorn", "--worker-class", "eventlet", "-w", "1", "app:app", "--bind", "0.0.0.0:8000" ]
