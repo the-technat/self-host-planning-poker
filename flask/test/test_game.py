@@ -10,7 +10,7 @@ class GameTestCase(unittest.TestCase):
     def test_empty_state(self):
         game = Game('PBR Team Pizza')
         self.assertEqual(game.list_players_uuid(), [])
-        self.assertEqual(game.get_deck(), Deck.FIBONACCI)
+        self.assertEqual(game.get_deck(), Deck.DEFAULT)
         self.assertEqual(game.name, 'PBR Team Pizza')
         game2 = Game('PBR Team Pasta', Deck.T_SHIRTS)
         self.assertEqual(game2.get_deck(), Deck.T_SHIRTS)
@@ -297,7 +297,7 @@ class GameTestCase(unittest.TestCase):
     def test_game_info(self):
         game_name1 = 'Fizz'
         game1 = Game(game_name1)
-        self.assertEqual(game1.info(), {'name': game_name1, 'deck': 'FIBONACCI', 'revealed': False})
+        self.assertEqual(game1.info(), {'name': game_name1, 'deck': 'DEFAULT', 'revealed': False})
 
         game_name2 = 'Buzz'
         game2 = Game(game_name2, Deck.POWERS)
