@@ -2,6 +2,15 @@ apiVersion: v1
 entries:
   self-host-planning-poker:
   - apiVersion: v2
+    appVersion: v0.0.4
+    created: "2025-06-18T13:55:49.432340264Z"
+    description: Self-hosted scrum poker
+    digest: 1f96b5eaafabdb6f84d23b29c1525592fcbd79320015f94266e64959a0c0f46e
+    name: self-host-planning-poker
+    urls:
+    - https://the-technat.github.io/self-host-planning-poker/self-host-planning-poker-v0.0.4.tgz
+    version: v0.0.4
+  - apiVersion: v2
     appVersion: v0.0.3
     created: "2025-04-09T11:49:42.959144785Z"
     description: Self-hosted scrum poker
@@ -10,4 +19,4 @@ entries:
     urls:
     - https://the-technat.github.io/self-host-planning-poker/self-host-planning-poker-v0.0.3.tgz
     version: v0.0.3
-generated: "2025-04-09T11:49:42.958556598Z"
+generated: "2025-06-18T13:55:49.431721036Z"
