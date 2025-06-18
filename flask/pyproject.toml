@@ -5,7 +5,7 @@ requires-python = "==3.13.*"
 dependencies = [
     "bidict==0.23.1",
     "click==8.2.1",
-    "coverage==7.8.0",
+    "coverage==7.9.1",
     "dnspython==2.7.0",
     "eventlet==0.40.0",
     "flask==2.3.3",
